@@ -1,0 +1,24 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for the log panel */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 8px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #1f2937;
+  /* gray-800 */
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+  /* gray-600 */
+  border-radius: 20px;
+  border: 2px solid #1f2937;
+  /* gray-800 */
+}
+
+/* Add these styles to your App.css or index.css */

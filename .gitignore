@@ -1,0 +1,38 @@
+# dependencies
+/node_modules
+/frontend-app/node_modules
+/gateway-service/node_modules
+/zkp-circuits/node_modules
+/zkp-prover-service/node_modules
+
+# build output
+/frontend-app/dist
+/frontend-app/build
+
+# logs
+/gateway-service/api_logs.csv
+*.log
+
+# sensitive files - NEVER commit private keys or certificates
+/certs/*
+!/certs/.gitkeep
+
+# zkp-circuits generated files
+/zkp-circuits/.r1cs
+/zkp-circuits/.wasm
+/zkp-circuits/.zkey
+/zkp-circuits/.ptau
+/zkp-circuits/witness_calculator.js
+/zkp-circuits/generate_witness.js
+/zkp-circuits/age_check_js/
+/zkp-circuits/verification_key.json
+
+# generated profiles
+/gateway-service/profiles.json
+
+# misc
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
