@@ -1,13 +1,27 @@
 import React, { useState } from "react";
-import "./App.css";
+import styles from "./App.module.css"; // Import the new CSS module for styling
 import Layer1Demo from "./components/Layer1Demo";
 import Layer2Demo from "./components/Layer2Demo";
 import Layer3Demo from "./components/Layer3Demo";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { LockKeyhole } from "lucide-react"; // Run: npm install lucide-react
+
+// Animation variants for the header elements
+const headerVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  }),
+};
 
 function App() {
   const [activeTab, setActiveTab] = useState("Layer 1");
-
   const tabs = ["Layer 1", "Layer 2", "Layer 3"];
 
   const renderContent = () => {
@@ -24,47 +38,80 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans p-8">
-      <header className="text-center mb-10">
-        <h1 className="text-5xl font-bold text-cyan-400 tracking-tight">
+    <div className={styles.appContainer}>
+      {/* Animated background grid */}
+      <div className={styles.backgroundGrid} />
+
+      <header className={styles.header}>
+        <motion.div
+          custom={0}
+          initial="hidden"
+          animate="visible"
+          variants={headerVariants}
+          className={styles.logo}
+        >
+          <LockKeyhole size={48} />
+        </motion.div>
+        <motion.h1
+          custom={1}
+          initial="hidden"
+          animate="visible"
+          variants={headerVariants}
+          className={styles.title}
+        >
           Intelligent API Security Fabric
-        </h1>
-        <p className="text-gray-400 mt-2">
+        </motion.h1>
+        <motion.p
+          custom={2}
+          initial="hidden"
+          animate="visible"
+          variants={headerVariants}
+          className={styles.subtitle}
+        >
           A Zero-Trust Demo for Modern Banking APIs
-        </p>
+        </motion.p>
       </header>
 
-      <div className="max-w-5xl mx-auto">
-        <div className="flex justify-center border-b border-gray-700 mb-8">
+      <motion.div
+        custom={3}
+        initial="hidden"
+        animate="visible"
+        variants={headerVariants}
+        className={styles.mainContent}
+      >
+        <div className={styles.tabContainer}>
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`${
-                activeTab === tab ? "text-cyan-400" : "text-gray-500"
-              } relative py-4 px-6 text-lg font-medium focus:outline-none transition-colors`}
+              className={`${styles.tabButton} ${
+                activeTab === tab ? styles.activeTab : ""
+              }`}
             >
+              {tab}
               {activeTab === tab && (
                 <motion.div
-                  layoutId="underline"
-                  className="absolute bottom-0 left-0 right-0 h-1 bg-cyan-400"
+                  layoutId="active-tab-indicator"
+                  className={styles.activeTabIndicator}
                 />
               )}
-              {tab}
             </button>
           ))}
         </div>
         <main>
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {renderContent()}
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
+              {renderContent()}
+            </motion.div>
+          </AnimatePresence>
         </main>
-      </div>
+      </motion.div>
     </div>
   );
 }

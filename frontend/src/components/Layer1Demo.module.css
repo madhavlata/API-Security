@@ -1,0 +1,152 @@
+/* src/components/Layer1Demo.module.css */
+
+.container {
+    background-color: rgba(30, 41, 59, 0.5);
+    /* semi-transparent slate */
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.header {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #22d3ee;
+    /* cyan-400 */
+    margin-bottom: 0.25rem;
+    text-shadow: 0 0 5px #22d3ee;
+}
+
+.subheader {
+    color: #9ca3af;
+    /* gray-400 */
+    margin-bottom: 1.5rem;
+}
+
+.mainGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .mainGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #d1d5db;
+    /* gray-300 */
+    margin-bottom: 0.5rem;
+}
+
+.select {
+    width: 100%;
+    background-color: #1e293b;
+    /* slate-800 */
+    border: 1px solid #334155;
+    /* slate-700 */
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    color: white;
+    transition: all 0.2s;
+}
+
+.select:focus {
+    border-color: #22d3ee;
+    box-shadow: 0 0 10px #22d3ee;
+    outline: none;
+}
+
+.button,
+.buttonPrimary {
+    width: 100%;
+    border-radius: 0.375rem;
+    padding: 0.75rem 0;
+    font-weight: 700;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.button {
+    background-color: #0891b2;
+    /* cyan-600 */
+    color: white;
+}
+
+.button:hover {
+    background-color: #0e7490;
+    /* cyan-700 */
+    box-shadow: 0 0 15px #0891b2;
+}
+
+.buttonPrimary {
+    background-color: #4f46e5;
+    /* indigo-600 */
+    color: white;
+}
+
+.buttonPrimary:hover {
+    background-color: #4338ca;
+    /* indigo-700 */
+    box-shadow: 0 0 15px #4f46e5;
+}
+
+.buttonPrimary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.explanation {
+    font-size: 0.75rem;
+    color: #64748b;
+    /* slate-500 */
+    padding-top: 0.5rem;
+}
+
+.responseBox {
+    background-color: #020617;
+    /* midnight blue */
+    border-radius: 0.375rem;
+    padding: 1rem;
+    min-height: 150px;
+    border: 1px solid #1e293b;
+    /* slate-800 */
+}
+
+.responseHeader {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #9ca3af;
+    /* gray-400 */
+    margin-bottom: 0.5rem;
+}
+
+.pre {
+    font-family: monospace;
+    font-size: 0.875rem;
+    white-space: pre-wrap;
+}
+
+.success {
+    color: #4ade80;
+    /* green-400 */
+}
+
+.error {
+    color: #f87171;
+    /* red-400 */
+}

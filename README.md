@@ -1,4 +1,5 @@
-# Intelligent API Security Fabric - Hackathon Project
+# Intelligent API Security Fabric
+This project is a hackathon prototype demonstrating a multi-layered, zero-trust security architecture for modern banking APIs. It moves beyond traditional defenses to address sophisticated threats like credential theft, behavioral attacks, and data privacy breaches.
 
 ## Prerequisites
 

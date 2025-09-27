@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import styles from "./Layer1Demo.module.css"; // Import the stylesheet
 
-// In a real browser app, mTLS is handled by the browser/OS, not JS.
-// We will simulate the CONCEPT here for the demo.
 const Layer1Demo = () => {
   const [selectedCert, setSelectedCert] = useState("client1.com");
   const [token, setToken] = useState("");
@@ -11,14 +10,15 @@ const Layer1Demo = () => {
 
   const handleGetToken = () => {
     setApiResponse(null);
-    setToken(`jwt.token.bound.to.${selectedCert}.cert.placeholder`);
+    // Use the base name of the certificate for the placeholder token
+    setToken(`jwt.token.bound.to.${selectedCert.split(" ")[0]}.placeholder`);
   };
 
   const handleApiCall = () => {
     setIsLoading(true);
     setApiResponse(null);
-    // SIMULATION: If token is bound to Client1 cert, and we are using Client1 cert, it succeeds.
-    const isSuccess = token.includes(selectedCert);
+    // Simulation logic: Success if the token contains the currently selected cert's base name
+    const isSuccess = token.includes(selectedCert.split(" ")[0]);
     setTimeout(() => {
       if (isSuccess) {
         setApiResponse({
@@ -36,67 +36,59 @@ const Layer1Demo = () => {
   };
 
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-xl">
-      <h2 className="text-2xl font-bold text-cyan-400 mb-1">
-        Layer 1: Unphishable Identity
-      </h2>
-      <p className="text-gray-400 mb-6">mTLS + Certificate-Bound Tokens</p>
+    <div className={styles.container}>
+      <h2 className={styles.header}>Layer 1: Unphishable Identity</h2>
+      <p className={styles.subheader}>mTLS + Certificate-Bound Tokens</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className={styles.mainGrid}>
         {/* Controls */}
-        <div className="space-y-4">
+        <div className={styles.controls}>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
+            <label className={styles.label}>
               Simulated Client Certificate:
             </label>
             <select
               value={selectedCert}
-              // This is the corrected line
               onChange={(e) => {
                 setSelectedCert(e.target.value);
+                // Don't clear the token, so we can test the "stolen token" scenario
                 setApiResponse(null);
               }}
-              className="w-full bg-gray-700 border border-gray-600 rounded-md p-2"
+              className={styles.select}
             >
               <option>client1.com</option>
               <option>client2.com (Attacker)</option>
             </select>
           </div>
-          <button
-            onClick={handleGetToken}
-            className="w-full bg-cyan-600 hover:bg-cyan-500 rounded-md py-2 font-bold"
-          >
-            1. Get Access Token (Bound to '{selectedCert}')
+          <button onClick={handleGetToken} className={styles.button}>
+            1. Get Access Token (Bound to '{selectedCert.split(" ")[0]}')
           </button>
           <button
             onClick={handleApiCall}
             disabled={!token || isLoading}
-            className="w-full bg-indigo-600 hover:bg-indigo-500 rounded-md py-2 font-bold disabled:opacity-50"
+            className={styles.buttonPrimary}
           >
             2. Call Protected API: /accounts/123
           </button>
-          <p className="text-xs text-gray-500 pt-2">
-            This demo simulates the token binding check. If you get a token as
-            'client1.com' and then try to use it as 'client2.com', the gateway
-            rejects it, proving the token is useless if stolen.
+          <p className={styles.explanation}>
+            Test the "stolen token" scenario: Get a token as 'client1.com', then
+            switch the certificate to 'client2.com' and try to call the API.
           </p>
         </div>
 
         {/* Response */}
-        <div className="bg-gray-900 rounded-md p-4 h-full">
-          <h3 className="text-lg font-semibold text-gray-400 mb-2">
-            Gateway Response:
-          </h3>
+        <div className={styles.responseBox}>
+          <h3 className={styles.responseHeader}>Gateway Response:</h3>
           {isLoading && <p>Loading...</p>}
           {apiResponse && (
             <motion.pre
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className={`text-sm whitespace-pre-wrap ${
-                apiResponse.status === 200 ? "text-green-400" : "text-red-400"
+              className={`${styles.pre} ${
+                apiResponse.status === 200 ? styles.success : styles.error
               }`}
             >
-              <span className="font-bold">
+              <span style={{ fontWeight: 700 }}>
                 HTTP Status: {apiResponse.status}
               </span>
               <br />
