@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import * as snarkjs from "snarkjs";
-import styles from "./Layer3Demo.module.css"; // Import the new CSS module
+import styles from "./Layer3Demo.module.css";
 
 const zkpApi = axios.create({ baseURL: "http://localhost:3001" });
 

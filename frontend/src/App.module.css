@@ -1,5 +1,3 @@
-/* src/App.module.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:wght@300;400&display=swap');
 
 .appContainer {
@@ -7,13 +5,10 @@
     padding: 2rem;
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
-    /* Important for containing the background */
     position: relative;
     background-color: #020617;
-    /* midnight blue */
 }
 
-/* Animated background grid for a "tech" feel */
 .backgroundGrid {
     position: absolute;
     top: 0;
@@ -38,7 +33,6 @@
     }
 }
 
-/* Header styling */
 .header {
     text-align: center;
     margin-bottom: 3rem;
@@ -48,7 +42,6 @@
 
 .logo {
     color: #06b6d4;
-    /* cyan-500 */
     display: inline-block;
     margin-bottom: 1rem;
     filter: drop-shadow(0 0 10px #06b6d4);
@@ -59,9 +52,7 @@
     font-size: 3.5rem;
     font-weight: 700;
     color: #cffafe;
-    /* cyan-50 */
     letter-spacing: -0.025em;
-    /* The "Neon" glow effect */
     text-shadow:
         0 0 5px #06b6d4,
         0 0 10px #06b6d4,
@@ -71,21 +62,17 @@
 
 .subtitle {
     color: #9ca3af;
-    /* gray-400 */
     margin-top: 1rem;
     font-size: 1.125rem;
     font-weight: 300;
 }
 
-/* Main content area */
 .mainContent {
     max-width: 80rem;
-    /* 1280px */
     margin: 0 auto;
     position: relative;
     z-index: 1;
     background: rgba(15, 23, 42, 0.8);
-    /* slate-900 with transparency */
     border: 1px solid rgba(56, 189, 248, 0.2);
     border-radius: 1rem;
     padding: 1rem 2rem 2rem 2rem;
@@ -93,7 +80,6 @@
     box-shadow: 0 0 30px rgba(6, 182, 212, 0.1);
 }
 
-/* Tab navigation styling */
 .tabContainer {
     display: flex;
     justify-content: center;
@@ -105,7 +91,6 @@
     background: none;
     border: none;
     color: #64748b;
-    /* slate-500 */
     padding: 1rem 1.5rem;
     font-size: 1rem;
     font-weight: 400;
@@ -119,18 +104,15 @@
 
 .tabButton:hover {
     color: #e2e8f0;
-    /* slate-200 */
 }
 
 .activeTab {
     color: #22d3ee;
-    /* cyan-400 */
 }
 
 .activeTabIndicator {
     position: absolute;
     bottom: -1px;
-    /* Sits on top of the border */
     left: 0;
     right: 0;
     height: 2px;

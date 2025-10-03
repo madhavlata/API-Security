@@ -9,26 +9,24 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// --- mTLS Server Setup ---
 const options = {
   key: fs.readFileSync("../certs/localhost-key.pem"),
   cert: fs.readFileSync("../certs/localhost.pem"),
   ca: fs.readFileSync("../certs/rootCA.pem"),
   requestCert: true,
-  rejectUnauthorized: false, // Set to false for demo to analyze failure cases
+  rejectUnauthorized: false,
 };
 
-// --- Layer 2: Behavioral Analysis Setup ---
 let requestCounts = {};
-let profiles = { "client1.com": { baseline_rps: 5 } }; // Default profile
+let profiles = { "client1.com": { baseline_rps: 5 } };
 let blockedClients = new Set();
 
 setInterval(() => {
   requestCounts = {};
-}, 1000); // Reset counts every second
+}, 1000);
 setInterval(() => {
   blockedClients.clear();
-}, 30000); // Unblock clients every 30s
+}, 30000);
 
 const behavioralAnalysis = (req, res, next) => {
   const clientID = req.socket.getPeerCertificate().subject.CN;
@@ -45,7 +43,6 @@ const behavioralAnalysis = (req, res, next) => {
     clientProfile &&
     requestCounts[clientID] > clientProfile.baseline_rps * 2
   ) {
-    // 2x threshold
     blockedClients.add(clientID);
     console.log(`ATTACK DETECTED: Blocking client ${clientID}`);
     return res
@@ -55,7 +52,6 @@ const behavioralAnalysis = (req, res, next) => {
   next();
 };
 
-// --- Layer 1: Token Binding Middleware ---
 const verifyTokenBinding = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   if (!authHeader) return res.status(401).send("No token provided.");
@@ -87,7 +83,6 @@ const verifyTokenBinding = (req, res, next) => {
   }
 };
 
-// --- Endpoints ---
 app.post("/oauth/token", (req, res) => {
   const clientCert = req.socket.getPeerCertificate();
   if (!clientCert || !clientCert.subject) {
@@ -106,7 +101,6 @@ app.post("/oauth/token", (req, res) => {
   res.json({ access_token: token });
 });
 
-// Protected Endpoint
 app.get("/accounts/:id", behavioralAnalysis, verifyTokenBinding, (req, res) => {
   const logEntry = `${new Date().toISOString()},${req.user.sub},${req.path}\n`;
   fs.appendFileSync("api_logs.csv", logEntry);

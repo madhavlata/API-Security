@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import styles from "./App.module.css"; // Import the new CSS module for styling
+import styles from "./App.module.css";
 import Layer1Demo from "./components/Layer1Demo";
 import Layer2Demo from "./components/Layer2Demo";
 import Layer3Demo from "./components/Layer3Demo";
 import { motion, AnimatePresence } from "framer-motion";
-import { LockKeyhole } from "lucide-react"; // Run: npm install lucide-react
+import { LockKeyhole } from "lucide-react";
 
-// Animation variants for the header elements
 const headerVariants = {
   hidden: { opacity: 0, y: -20 },
   visible: (i) => ({
@@ -39,7 +38,6 @@ function App() {
 
   return (
     <div className={styles.appContainer}>
-      {/* Animated background grid */}
       <div className={styles.backgroundGrid} />
 
       <header className={styles.header}>

@@ -1,6 +1,5 @@
 .container {
     background-color: rgba(30, 41, 59, 0.5);
-    /* semi-transparent slate */
     padding: 1.5rem;
     border-radius: 0.5rem;
 }
@@ -10,14 +9,12 @@
     font-size: 1.5rem;
     font-weight: 700;
     color: #22d3ee;
-    /* cyan-400 */
     margin-bottom: 0.25rem;
     text-shadow: 0 0 5px #22d3ee;
 }
 
 .subheader {
     color: #9ca3af;
-    /* gray-400 */
     margin-bottom: 1.5rem;
 }
 

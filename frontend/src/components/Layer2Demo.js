@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShieldCheck, AlertTriangle, Cpu } from "lucide-react";
-import styles from "./Layer2Demo.module.css"; // Import the CSS Module
+import styles from "./Layer2Demo.module.css";
 
 const attackLogs = [
   "POST /payments/1' OR '1'='1 -> 400",

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import styles from "./Layer1Demo.module.css"; // Import the stylesheet
+import styles from "./Layer1Demo.module.css";
 
 const Layer1Demo = () => {
   const [selectedCert, setSelectedCert] = useState("client1.com");
@@ -10,14 +10,13 @@ const Layer1Demo = () => {
 
   const handleGetToken = () => {
     setApiResponse(null);
-    // Use the base name of the certificate for the placeholder token
     setToken(`jwt.token.bound.to.${selectedCert.split(" ")[0]}.placeholder`);
   };
 
   const handleApiCall = () => {
     setIsLoading(true);
     setApiResponse(null);
-    // Simulation logic: Success if the token contains the currently selected cert's base name
+    // Success if the token contains the currently selected cert's base name
     const isSuccess = token.includes(selectedCert.split(" ")[0]);
     setTimeout(() => {
       if (isSuccess) {
@@ -41,7 +40,6 @@ const Layer1Demo = () => {
       <p className={styles.subheader}>mTLS + Certificate-Bound Tokens</p>
 
       <div className={styles.mainGrid}>
-        {/* Controls */}
         <div className={styles.controls}>
           <div>
             <label className={styles.label}>
@@ -51,7 +49,6 @@ const Layer1Demo = () => {
               value={selectedCert}
               onChange={(e) => {
                 setSelectedCert(e.target.value);
-                // Don't clear the token, so we can test the "stolen token" scenario
                 setApiResponse(null);
               }}
               className={styles.select}

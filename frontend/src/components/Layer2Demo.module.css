@@ -1,8 +1,6 @@
-/* src/components/Layer2Demo.module.css */
-
 .container {
     background-color: #1f2937;
-    /* bg-gray-800 */
+
     padding: 1.5rem;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -11,7 +9,7 @@
 
 .header {
     color: #22d3ee;
-    /* text-cyan-400 */
+
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 700;
@@ -20,7 +18,7 @@
 
 .subheader {
     color: #9ca3af;
-    /* text-gray-400 */
+
     margin-bottom: 1.5rem;
 }
 
@@ -73,7 +71,6 @@
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: rgba(17, 24, 39, 0.5);
-    /* bg-gray-900/50 */
 }
 
 .statusText {
@@ -96,7 +93,6 @@
 
 .logsContainer {
     background-color: #111827;
-    /* bg-gray-900 */
     border-radius: 0.375rem;
     padding: 0.75rem;
     min-height: 150px;
@@ -107,14 +103,14 @@
     line-height: 1.25rem;
     font-weight: 600;
     color: #9ca3af;
-    /* text-gray-400 */
+
     margin-bottom: 0.5rem;
 }
 
 .logEntry {
     font-family: monospace;
     font-size: 0.75rem;
-    /* text-xs */
+
     margin-bottom: 0.5rem;
     white-space: nowrap;
     overflow: hidden;
@@ -145,7 +141,7 @@
     padding-bottom: 0.75rem;
     border-radius: 0.375rem;
     background-color: #dc2626;
-    /* bg-red-600 */
+
     color: white;
     border: none;
     cursor: pointer;
@@ -154,7 +150,7 @@
 
 .simulateButton:hover {
     background-color: #b91c1c;
-    /* hover:bg-red-700 */
+
 }
 
 .simulateButton:disabled {
